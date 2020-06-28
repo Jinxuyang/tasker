@@ -1,8 +1,7 @@
 package service;
 
-import dao.UserDao;
+import dao.impl.UserDao;
 import domain.User;
-import org.junit.jupiter.api.Test;
 
 public class UserService {
     UserDao userDao = new UserDao();
@@ -13,9 +12,5 @@ public class UserService {
     public String findUsernameByUid(Integer uid){
          User user = userDao.findByUid(uid);
          return user.getUsername();
-    }
-    @Test
-    public void loginTest(){
-        //System.out.println(login(1,"JINXUyang123"));
     }
 }

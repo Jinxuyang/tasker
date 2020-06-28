@@ -1,7 +1,6 @@
-package dao;
+package dao.impl;
 
 import domain.User;
-import org.junit.jupiter.api.Test;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -33,9 +32,4 @@ public class UserDao {
         String sql = "SELECT * FROM tasker.users WHERE uid = ?";
         return jdbcTemplate.queryForObject(sql,new BeanPropertyRowMapper<User>(User.class),uid);
     }
-
-    @Test
-    public void findByUidAndPasswordTest(){
-    }
-
 }

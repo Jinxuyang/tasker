@@ -1,7 +1,6 @@
-package dao;
+package dao.impl;
 
 import domain.Task;
-import org.junit.jupiter.api.Test;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import utils.JDBCUtils;
@@ -37,11 +36,7 @@ public class TaskDao {
             return false;
         }
     }
-    @Test
-    public void test(){
-        Task task = new Task();
-        add(task);
-    }
+
     public List<Task> findByClass(Integer createFor){
         String sql = "SELECT * FROM tasker.tasks WHERE createFor = ?";
         List<Task> list = jdbcTemplate.query(sql,new BeanPropertyRowMapper<Task>(Task.class),createFor);

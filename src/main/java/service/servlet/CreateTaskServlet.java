@@ -3,7 +3,6 @@ package service.servlet;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import domain.ResultInfo;
 import domain.Task;
-import org.junit.jupiter.api.Test;
 import service.TaskService;
 
 import javax.servlet.ServletException;
@@ -66,8 +65,4 @@ public class CreateTaskServlet extends HttpServlet {
         mapper.writeValue(response.getOutputStream(),resultInfo);
     }
 
-    @Test
-    public void test(){
-
-    }
 }

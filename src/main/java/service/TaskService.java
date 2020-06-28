@@ -1,7 +1,7 @@
 package service;
 
-import dao.TaskDao;
-import dao.UserDao;
+import dao.impl.TaskDao;
+import dao.impl.UserDao;
 import domain.Task;
 
 import java.util.List;
