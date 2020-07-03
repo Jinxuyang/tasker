@@ -30,6 +30,29 @@
         </where>
     </select>
     <update id="setUserInfo" parameterType="domain.User">
-
+        UPDATE tasker.users
+        <set>
+            <if test="username != null">
+                username = #{username}
+            </if>
+            <if test="password != null">
+                password = #{password}
+            </if>
+            <if test="gender != null">
+                gender = #{gender}
+            </if>
+            <if test="qq != null">
+                qq = #{qq}
+            </if>
+            <if test="email != null">
+                email = #{email}
+            </if>
+            <if test="clAss != null">
+                clAss = #{clAss}
+            </if>
+        </set>
+        <where>
+            uid = #{uid}
+        </where>
     </update>
 </mapper>

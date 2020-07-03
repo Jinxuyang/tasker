@@ -1,5 +1,13 @@
 package dao;
 
-public interface ITaskDao {
+import domain.Task;
+import domain.User;
+import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
+public interface ITaskDao {
+    List<Task> findTask(Task task);
+    Integer addTask(Task task);
+    Integer addAutoTask(@Param("list") List<User> list,@Param("tid") Integer tid);
 }

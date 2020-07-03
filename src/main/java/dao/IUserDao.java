@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface IUserDao {
     List<User> findUser(User user);
-    User setUserInfo(User user);
+    int setUserInfo(User user);
 }

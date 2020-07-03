@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.ITaskDao">
+    <select id="findTask" resultType="domain.Task">
+        SELECT * FROM tasker.tasks
+        <where>
+            <if test="tid != null">
+                AND tid = #{tid}
+            </if>
+            <if test="title != null">
+                AND title LIKE "%"#{title}"%"
+            </if>
+            <if test="content != null">
+                AND content LIKE "%"#{content}"%"
+            </if>
+            <if test="createrId != null">
+                AND createrId = #{createrId}
+            </if>
+            <if test="type != null">
+                AND type = #{type}
+            </if>
+        </where>
+    </select>
+    <insert id="addTask" parameterType="domain.Task">
+        INSERT INTO tasks(title,content,createFor,createrId,type)
+        VALUES(#{title},#{content},#{createFor},#{createrId},#{type})
+        <selectKey resultType="int" keyColumn="tid" keyProperty="tid" order="AFTER">
+            SELECT last_insert_id();
+        </selectKey>
+    </insert>
+
+    <insert id="addAutoTask" >
+        INSERT INTO t_users_tasks(uid,tid,status,type)
+        VALUES
+        <foreach collection="list" item="list" index="index" separator=",">
+            (
+                #{list.uid},#{tid},0,1
+            )
+        </foreach>
+    </insert>
+</mapper>

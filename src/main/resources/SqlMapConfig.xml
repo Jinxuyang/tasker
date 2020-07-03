@@ -9,14 +9,15 @@
             </transactionManager>
             <dataSource type="POOLED">
                 <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
-                <property name="url" value="jdbc:mysql://:3306/tasker"/>
+                <property name="url" value="jdbc:mysql://192.168.123.199:3306/tasker?serverTimezone=UTC"/>
                 <property name="username" value="root"/>
-                <property name="password" value="JINXUyang123"/>
+                <property name="password" value="1234"/>
             </dataSource>
         </environment>
     </environments>
 
     <mappers>
         <mapper resource="dao/IUserDao.xml"/>
+        <mapper resource="dao/ITaskDao.xml"/>
     </mappers>
 </configuration>

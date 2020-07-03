@@ -1,17 +1,17 @@
 /*
- Navicat MySQL Data Transfer
+ Navicat Premium Data Transfer
 
- Source Server         : tasker
+ Source Server         : 华为云
  Source Server Type    : MySQL
  Source Server Version : 80020
- Source Host           : localhost:3306
+ Source Host           : 121.36.19.47:3306
  Source Schema         : tasker
 
  Target Server Type    : MySQL
  Target Server Version : 80020
  File Encoding         : 65001
 
- Date: 10/06/2020 15:54:59
+ Date: 29/06/2020 13:53:26
 */
 
 SET NAMES utf8mb4;
@@ -22,11 +22,11 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- ----------------------------
 DROP TABLE IF EXISTS `class`;
 CREATE TABLE `class`  (
-  `cid` mediumint(0) NOT NULL AUTO_INCREMENT,
+  `cid` mediumint NOT NULL AUTO_INCREMENT,
   `major` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `class` varchar(5) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   PRIMARY KEY (`cid`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of class
@@ -38,63 +38,64 @@ INSERT INTO `class` VALUES (1, '电子信息类', '198');
 -- ----------------------------
 DROP TABLE IF EXISTS `t_users_tasks`;
 CREATE TABLE `t_users_tasks`  (
-  `uid` int(0) NOT NULL,
-  `tid` int(0) NOT NULL,
+  `uid` int NOT NULL,
+  `tid` int NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT 0,
+  `type` tinyint NULL DEFAULT NULL,
   INDEX `t_users_tasks_users_uid_fk`(`uid`) USING BTREE,
   INDEX `t_users_tasks_tasks_tid_fk`(`tid`) USING BTREE,
   CONSTRAINT `t_users_tasks_tasks_tid_fk` FOREIGN KEY (`tid`) REFERENCES `tasks` (`tid`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `t_users_tasks_users_uid_fk` FOREIGN KEY (`uid`) REFERENCES `users` (`uid`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of t_users_tasks
 -- ----------------------------
-INSERT INTO `t_users_tasks` VALUES (1, 23, 1);
-INSERT INTO `t_users_tasks` VALUES (2, 23, 1);
-INSERT INTO `t_users_tasks` VALUES (3, 23, 0);
-INSERT INTO `t_users_tasks` VALUES (4, 23, 0);
-INSERT INTO `t_users_tasks` VALUES (5, 23, 0);
-INSERT INTO `t_users_tasks` VALUES (6, 23, 0);
-INSERT INTO `t_users_tasks` VALUES (7, 23, 0);
-INSERT INTO `t_users_tasks` VALUES (8, 23, 0);
-INSERT INTO `t_users_tasks` VALUES (9, 23, 0);
-INSERT INTO `t_users_tasks` VALUES (10, 23, 0);
-INSERT INTO `t_users_tasks` VALUES (11, 23, 0);
-INSERT INTO `t_users_tasks` VALUES (12, 23, 0);
-INSERT INTO `t_users_tasks` VALUES (13, 23, 0);
-INSERT INTO `t_users_tasks` VALUES (14, 23, 1);
-INSERT INTO `t_users_tasks` VALUES (15, 23, 0);
-INSERT INTO `t_users_tasks` VALUES (16, 23, 0);
-INSERT INTO `t_users_tasks` VALUES (17, 23, 0);
-INSERT INTO `t_users_tasks` VALUES (18, 23, 0);
-INSERT INTO `t_users_tasks` VALUES (19, 23, 0);
-INSERT INTO `t_users_tasks` VALUES (20, 23, 0);
-INSERT INTO `t_users_tasks` VALUES (21, 23, 0);
-INSERT INTO `t_users_tasks` VALUES (23, 23, 0);
-INSERT INTO `t_users_tasks` VALUES (24, 23, 0);
-INSERT INTO `t_users_tasks` VALUES (25, 23, 0);
-INSERT INTO `t_users_tasks` VALUES (26, 23, 0);
-INSERT INTO `t_users_tasks` VALUES (27, 23, 0);
-INSERT INTO `t_users_tasks` VALUES (29, 23, 0);
+INSERT INTO `t_users_tasks` VALUES (1, 23, 0, 1);
+INSERT INTO `t_users_tasks` VALUES (2, 23, 1, 1);
+INSERT INTO `t_users_tasks` VALUES (3, 23, 1, 1);
+INSERT INTO `t_users_tasks` VALUES (4, 23, 0, 1);
+INSERT INTO `t_users_tasks` VALUES (5, 23, 1, 1);
+INSERT INTO `t_users_tasks` VALUES (6, 23, 1, 1);
+INSERT INTO `t_users_tasks` VALUES (7, 23, 1, 1);
+INSERT INTO `t_users_tasks` VALUES (8, 23, 1, 1);
+INSERT INTO `t_users_tasks` VALUES (9, 23, 1, 1);
+INSERT INTO `t_users_tasks` VALUES (10, 23, 0, 1);
+INSERT INTO `t_users_tasks` VALUES (11, 23, 0, 1);
+INSERT INTO `t_users_tasks` VALUES (12, 23, 1, 1);
+INSERT INTO `t_users_tasks` VALUES (13, 23, 0, 1);
+INSERT INTO `t_users_tasks` VALUES (14, 23, 1, 1);
+INSERT INTO `t_users_tasks` VALUES (15, 23, 0, 1);
+INSERT INTO `t_users_tasks` VALUES (16, 23, 1, 1);
+INSERT INTO `t_users_tasks` VALUES (17, 23, 1, 1);
+INSERT INTO `t_users_tasks` VALUES (18, 23, 1, 1);
+INSERT INTO `t_users_tasks` VALUES (19, 23, 1, 1);
+INSERT INTO `t_users_tasks` VALUES (20, 23, 0, 1);
+INSERT INTO `t_users_tasks` VALUES (21, 23, 1, 1);
+INSERT INTO `t_users_tasks` VALUES (23, 23, 1, 1);
+INSERT INTO `t_users_tasks` VALUES (24, 23, 1, 1);
+INSERT INTO `t_users_tasks` VALUES (25, 23, 1, 1);
+INSERT INTO `t_users_tasks` VALUES (26, 23, 1, 1);
+INSERT INTO `t_users_tasks` VALUES (27, 23, 0, 1);
+INSERT INTO `t_users_tasks` VALUES (29, 23, 0, 1);
 
 -- ----------------------------
 -- Table structure for tasks
 -- ----------------------------
 DROP TABLE IF EXISTS `tasks`;
 CREATE TABLE `tasks`  (
-  `tid` int(0) NOT NULL AUTO_INCREMENT,
+  `tid` int NOT NULL AUTO_INCREMENT,
   `title` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `content` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   `createTime` timestamp(0) NULL DEFAULT CURRENT_TIMESTAMP(0),
   `deadline` timestamp(0) NULL DEFAULT NULL,
-  `createFor` mediumint(0) NOT NULL,
-  `createrId` int(0) NOT NULL,
-  `type` tinyint(0) NOT NULL,
+  `createFor` mediumint NOT NULL,
+  `createrId` int NOT NULL,
+  `type` tinyint NOT NULL,
   PRIMARY KEY (`tid`) USING BTREE,
   INDEX `tasks_class_cid_fk`(`createFor`) USING BTREE,
   CONSTRAINT `tasks_class_cid_fk` FOREIGN KEY (`createFor`) REFERENCES `class` (`cid`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 25 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 25 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of tasks
@@ -106,17 +107,17 @@ INSERT INTO `tasks` VALUES (23, '易班每日健康打卡', '需要每天完成'
 -- ----------------------------
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users`  (
-  `uid` int(0) NOT NULL AUTO_INCREMENT,
+  `uid` int NOT NULL AUTO_INCREMENT,
   `username` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `password` varchar(18) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   `gender` varchar(6) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   `qq` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   `email` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `class` mediumint(0) NOT NULL,
+  `clAss` mediumint NOT NULL,
   PRIMARY KEY (`uid`) USING BTREE,
-  INDEX `users_class_cid_fk`(`class`) USING BTREE,
-  CONSTRAINT `users_class_cid_fk` FOREIGN KEY (`class`) REFERENCES `class` (`cid`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 30 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+  INDEX `users_class_cid_fk`(`clAss`) USING BTREE,
+  CONSTRAINT `users_class_cid_fk` FOREIGN KEY (`clAss`) REFERENCES `class` (`cid`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 30 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of users
@@ -149,13 +150,16 @@ INSERT INTO `users` VALUES (26, '贠芃江', NULL, '男', '', NULL, 1);
 INSERT INTO `users` VALUES (27, '张庆权', NULL, '男', '', NULL, 1);
 INSERT INTO `users` VALUES (29, '赵冠熙', NULL, '男', '', NULL, 1);
 
+-- ----------------------------
+-- Event structure for updateStatus
+-- ----------------------------
+DROP EVENT IF EXISTS `updateStatus`;
+delimiter ;;
+CREATE EVENT `updateStatus`
+ON SCHEDULE
+EVERY '1' DAY STARTS '2020-06-10 00:00:00'
+DO UPDATE tasker.t_users_tasks SET t_users_tasks.status = false where t_users_tasks.type = 1
+;;
+delimiter ;
+
 SET FOREIGN_KEY_CHECKS = 1;
-
--- ----------------------------
--- events
--- ----------------------------
-
-CREATE EVENT IF NOT EXISTS updateStatus
-    ON SCHEDULE EVERY 1 DAY STARTS DATE_ADD(DATE_ADD(CURDATE(), INTERVAL 1 DAY), INTERVAL 1 HOUR)
-    ON COMPLETION PRESERVE ENABLE
-    DO UPDATE tasker.t_users_tasks SET t_users_tasks.status = false where t_users_tasks.type = 1;
