@@ -14,22 +14,30 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.util.List;
 
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
+    private UserService userService;
+    private ResultInfo resultInfo;
+    private User user;
+
+    public LoginServlet(UserService userService, ResultInfo resultInfo, User user) {
+        this.userService = userService;
+        this.resultInfo = resultInfo;
+        this.user = user;
+    }
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("LoginServlet触发");
 
-        User user = new User();
         try {
             BeanUtils.populate(user,request.getParameterMap());
         } catch (IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
         }
-        UserService userService = new UserService();
-        user = userService.login(user);
-        ResultInfo resultInfo = new ResultInfo();
-
+        List<User> list = userService.login(user);
+        user = list.get(0);
 
         if(user.getUid() == null || user.getPassword() == null){
             resultInfo.setFlag(false);

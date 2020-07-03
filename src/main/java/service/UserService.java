@@ -1,16 +1,26 @@
 package service;
 
-import dao.impl.UserDao;
+import dao.IUserDao;
 import domain.User;
 
+import java.util.List;
+
 public class UserService {
-    UserDao userDao = new UserDao();
-    public User login(User user){
-        return userDao.findByUidAndPassword(user.getUid(),user.getPassword());
+    IUserDao userDao;
+    User user;
+
+    public UserService(IUserDao userDao, User user) {
+        this.userDao = userDao;
+        this.user = user;
     }
 
+    public List<User> login(User user){
+
+        return userDao.findUser(user);
+    }
     public String findUsernameByUid(Integer uid){
-         User user = userDao.findByUid(uid);
-         return user.getUsername();
+        user.setUid(uid);
+        List<User> list = userDao.findUser(user);
+        return list.get(0).getUsername();
     }
 }

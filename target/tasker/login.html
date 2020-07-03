@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+    $(function () {
+        $("#submit").click(function(){
+            $.ajax({
+                url:"LoginServlet",
+                type:"post",
+                data:$("form").serialize(),
+                success:function (data) {
+                    if(data.flag){
+                        $("#alert1").css('display','block');
+                        window.location.href="newTask.html";
+                        console.log(data.msg);
+                    }else{
+                        $("#alert1").css('display','none');
+                        $("#alert2").css('display','block');
+                        console.log(data.msg);
+                    }
+                },
+                error:function (e) {
+                    console.log("出错"+e);
+                }
+            })
+        });
+    })
+</script>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <!--生成汉堡按钮-->
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html">Takser</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><a href="newTask.html">新建任务</a></li>
+                <li><a class="active">登录</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="about.html">关于</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container">
+
+    <div id="alert1" class="alert alert-success" role="alert" style="display: none">登录成功，正在转跳中...</div>
+    <div id="alert2" class="alert alert-danger" role="alert" style="display: none">账号或密码错误</div>
+
+    <form method="post">
+        <div class="form-group">
+            <label for="uid">学号</label>
+            <input type="text" class="form-control" id="uid" name="uid" placeholder="请输学号后两位">
+        </div>
+        <div class="form-group">
+            <label for="password">密码</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="请输入密码">
+        </div>
+        <button type="button" id="submit" class="btn btn-default">提交</button>
+    </form>
+</div>
+
+</body>
+</html>

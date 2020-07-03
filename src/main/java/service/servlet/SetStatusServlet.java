@@ -15,14 +15,20 @@ import java.util.Objects;
 
 @WebServlet("/SetStatusServlet")
 public class SetStatusServlet extends HttpServlet {
+    private UserService userService;
+    private TaskService taskService;
+    private ResultInfo resultInfo;
+
+    public SetStatusServlet(UserService userService, TaskService taskService, ResultInfo resultInfo) {
+        this.userService = userService;
+        this.taskService = taskService;
+        this.resultInfo = resultInfo;
+    }
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Integer uid = Integer.valueOf(request.getParameter("uid"));
         Integer tid = Integer.valueOf(request.getParameter("tid"));
         String username = request.getParameter("username");
-
-        UserService userService = new UserService();
-        TaskService taskService = new TaskService();
-        ResultInfo resultInfo = new ResultInfo();
 
         if(Objects.equals(username, userService.findUsernameByUid(uid))){
             if(taskService.updateTaskStatus(uid,tid,true)){

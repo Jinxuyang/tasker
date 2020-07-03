@@ -17,6 +17,12 @@ import java.util.Date;
 
 @WebServlet("/CreateTaskServlet")
 public class CreateTaskServlet extends HttpServlet {
+    private TaskService taskService;
+
+    public CreateTaskServlet(TaskService taskService) {
+        this.taskService = taskService;
+    }
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         ResultInfo resultInfo = new ResultInfo();
@@ -47,7 +53,6 @@ public class CreateTaskServlet extends HttpServlet {
                 task.setType(2);
             }
 
-            TaskService taskService = new TaskService();
             System.out.println(task);
             boolean flag = taskService.add(task);
             if(flag){

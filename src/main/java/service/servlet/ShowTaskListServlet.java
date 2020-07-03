@@ -14,8 +14,13 @@ import java.util.List;
 
 @WebServlet("/ShowTaskListServlet")
 public class ShowTaskListServlet extends HttpServlet {
+    private TaskService taskService;
+
+    public ShowTaskListServlet(TaskService taskService) {
+        this.taskService = taskService;
+    }
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        TaskService taskService = new TaskService();
         List<Task> list = taskService.findByClass(Integer.valueOf(request.getParameter("createFor")));
         ObjectMapper mapper = new ObjectMapper();
         mapper.writeValue(response.getOutputStream(),list);
